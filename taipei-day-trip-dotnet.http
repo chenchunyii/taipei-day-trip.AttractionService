@@ -1,0 +1,6 @@
+@taipei_day_trip_dotnet_HostAddress = http://localhost:5197
+
+GET {{taipei_day_trip_dotnet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
