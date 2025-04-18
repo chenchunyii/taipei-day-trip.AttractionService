@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using taipei_day_trip_dotnet.Data;
+using taipei_day_trip_dotnet.Services;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+// 添加控制器
+builder.Services.AddControllers();
 // setting mysql
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TaipeiDbContext>(options =>
@@ -10,7 +13,6 @@ builder.Services.AddDbContext<TaipeiDbContext>(options =>
 // setting swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 // setting cors
 builder.Services.AddCors(options =>
 {
@@ -20,7 +22,9 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins("http://localhost:*");
                       });
 });
-
+// add services to the  container.
+builder.Services.AddScoped<IAttractionService, AttractionServices>();
+builder.Services.AddScoped<IAttractionRepository, AttractionRepository>();
 
 var app = builder.Build();
 
@@ -34,5 +38,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.MapControllers();
 
 app.Run();

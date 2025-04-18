@@ -7,6 +7,6 @@ namespace taipei_day_trip_dotnet.Data
     {
          public TaipeiDbContext(DbContextOptions<TaipeiDbContext> options) : base(options) { }
 
-    public DbSet<TaipeiModels> Members => Set<TaipeiModels>();
+    public DbSet<AttractionModels> Attractions => Set<AttractionModels>();
     }
 }
