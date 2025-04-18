@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("taipei-day-trip-dotnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfeda88570e56c005cf75412ea9bd46cc9048858")]
 [assembly: System.Reflection.AssemblyProductAttribute("taipei-day-trip-dotnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("taipei-day-trip-dotnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
