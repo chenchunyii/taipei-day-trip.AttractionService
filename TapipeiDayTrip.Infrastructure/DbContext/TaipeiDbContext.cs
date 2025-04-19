@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using taipei_day_trip_dotnet.Models;
+using taipei_day_trip_dotnet.Entity;
 
 namespace taipei_day_trip_dotnet.Data
 {
@@ -7,6 +7,6 @@ namespace taipei_day_trip_dotnet.Data
     {
          public TaipeiDbContext(DbContextOptions<TaipeiDbContext> options) : base(options) { }
 
-    public DbSet<AttractionModels> Attractions => Set<AttractionModels>();
+    public DbSet<AttractionEntity> Attractions => Set<AttractionEntity>();
     }
 }

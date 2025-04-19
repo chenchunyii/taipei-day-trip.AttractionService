@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using taipei_day_trip_dotnet.Data;
 using taipei_day_trip_dotnet.Services;
+using taipei_day_trip_dotnet.TapipeiDayTrip.Application;
+using TapipeiDayTrip.Application.Interfaces;
+
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +28,8 @@ builder.Services.AddCors(options =>
 // add services to the  container.
 builder.Services.AddScoped<IAttractionService, AttractionServices>();
 builder.Services.AddScoped<IAttractionRepository, AttractionRepository>();
+// add automapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 var app = builder.Build();
 

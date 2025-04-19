@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace taipei_day_trip_dotnet.Models
+namespace taipei_day_trip_dotnet.Entity
 {
     [Table("webpage")]
-    public class AttractionModels
+    public class AttractionEntity
     {
         [Key]
         [Column("ID")]
@@ -42,6 +42,6 @@ namespace taipei_day_trip_dotnet.Models
         public double Longitude { get; set; }
 
         [Column("IMAGES")]
-        public string? Images { get; set; }  // 注意: 這裡先用 string，下面會解釋
+        public string? Images { get; set; }
     }
 }

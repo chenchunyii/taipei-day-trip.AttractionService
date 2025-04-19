@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using taipei_day_trip_dotnet.Models;
+using taipei_day_trip_dotnet.Entity;
 
 namespace taipei_day_trip_dotnet.Data
 {
@@ -12,10 +12,9 @@ namespace taipei_day_trip_dotnet.Data
             _context = context;
         }
 
-        public async Task<IList<AttractionModels>> GetAllAttractionsAsync()
+        public async Task<IList<AttractionEntity>> GetAllAttractionsAsync()
         {
-            var result =  await _context.Attractions.ToListAsync();
-            return result;
+            return await _context.Attractions.ToListAsync();
         }
     }
     

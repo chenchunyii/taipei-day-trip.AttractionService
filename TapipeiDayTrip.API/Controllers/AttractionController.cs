@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using taipei_day_trip_dotnet.Services;
+using taipei_day_trip_dotnet.TapipeiDayTrip.API.Reponse;
+using TapipeiDayTrip.Application.Interfaces;
+using AutoMapper;
 
 namespace taipei_day_trip_dotnet.Controllers
 {
@@ -7,10 +9,12 @@ namespace taipei_day_trip_dotnet.Controllers
     public class AttractionController : ControllerBase
     {
         private readonly IAttractionService _service;
+        private readonly IMapper _mapper;
 
-        public AttractionController(IAttractionService service)
+        public AttractionController(IAttractionService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -19,7 +23,7 @@ namespace taipei_day_trip_dotnet.Controllers
             try
             {
                 var attractions = await _service.GetAllAttractionsAsync();
-                return Ok(attractions);
+                return Ok(_mapper.Map<IList<AttractionsResponse>>(attractions));
             }
             catch (Exception ex)
             {
