@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "+c7U/BuxMZfWotKCXY1oPGhr5keSGC+LdywYqcbJ3MZXOfRoFQCsDjC/E0wXv76Kjeo4jwDUHxrxXc6T107yHA==",
+  "dgSpecHash": "qHQfCJDG2f9Suba1+U6PEzAbZg5d8ty0B1DSxKVKvK9OZ9dVC0tXBpbP/VRNJ+HyrnxrBsbe5dHCnsFmpQT86Q==",
   "success": true,
   "projectFilePath": "/home/chun/文件/wehelp_remake/taipei-day-trip-dotnet/taipei-day-trip-dotnet.csproj",
   "expectedPackageFiles": [
     "/home/chun/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/home/chun/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "/home/chun/.nuget/packages/dapper/2.1.66/dapper.2.1.66.nupkg.sha512",
     "/home/chun/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/chun/.nuget/packages/microsoft.aspnetcore.openapi/8.0.15/microsoft.aspnetcore.openapi.8.0.15.nupkg.sha512",
     "/home/chun/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

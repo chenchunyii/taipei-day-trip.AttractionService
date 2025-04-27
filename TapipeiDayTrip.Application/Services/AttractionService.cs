@@ -1,4 +1,3 @@
-using taipei_day_trip_dotnet.TapipeiDayTrip.API.Reponse;
 using TapipeiDayTrip.Application.Interfaces;
 using AutoMapper;
 using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.DTOs;
@@ -14,9 +13,14 @@ namespace taipei_day_trip_dotnet.Services
             _attractionRepository = attractionRepository;
             _mapper = mapper;
         }
-        public async Task<IList<AttractionDto>> GetAllAttractionsAsync()
+        public async Task<IList<AttractionCategoryDto>> GetAllCategoriesAsync()
         {
-            var result = await _attractionRepository.GetAllAttractionsAsync();
+            var restul = await _attractionRepository.GetAllCategoriesAsync();
+            return _mapper.Map<IList<AttractionCategoryDto>>(restul);
+        }
+        public async Task<IList<AttractionDto>> GetAttractionsAsync(int page, string? keyword)
+        {
+            var result = await _attractionRepository.GetAttractionsAsync(page, keyword);
             return _mapper.Map<IList<AttractionDto>>(result);
         }
     }

@@ -4,6 +4,7 @@ namespace TapipeiDayTrip.Application.Interfaces
 {
     public interface IAttractionService
     {
-        Task<IList<AttractionDto>> GetAllAttractionsAsync();
+        Task<IList<AttractionCategoryDto>> GetAllCategoriesAsync();
+        Task<IList<AttractionDto>> GetAttractionsAsync(int page, string? keyword);
     }
 }

@@ -210,3 +210,4 @@
 /home/chun/文件/wehelp_remake/taipei-day-trip-dotnet/bin/Debug/net8.0/appsettings.json
 /home/chun/文件/wehelp_remake/taipei-day-trip-dotnet/bin/Debug/net8.0/AutoMapper.dll
 /home/chun/文件/wehelp_remake/taipei-day-trip-dotnet/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/chun/文件/wehelp_remake/taipei-day-trip-dotnet/bin/Debug/net8.0/Dapper.dll
