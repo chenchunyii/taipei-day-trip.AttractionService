@@ -1,0 +1,52 @@
+# 編譯輸出
+/bin
+/obj
+
+# NuGet 相關
+packages/
+*.nupkg
+*.snupkg
+
+# Visual Studio 相關
+.vs/
+*.csproj.user
+*.suo
+*.sln.docstates
+*.testsettings
+*.runsettings
+*.dbmdl
+_ReSharper*/
+[Bb]uild/
+
+# Rider 相關
+.idea/
+
+# VS Code 相關
+.vscode/
+
+# EF Core 相關 (Migrations)
+/Migrations
+
+# 發布輸出
+/publish
+
+# 本機設定或使用者特定的檔案
+appsettings.Development.json
+*.usersecrets
+*.vspscc
+*.vssscc
+
+# 單元測試結果
+TestResults/
+
+# 程式碼分析相關
+/CodeCoverage*
+
+# 其他可能需要忽略的
+*.log
+*.patch
+
+# Docker 相關 (如果有的話)
+/docker-compose.*.yml
+/.dockerignore
+/dockerfile
