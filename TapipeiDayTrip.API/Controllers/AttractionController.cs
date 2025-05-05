@@ -44,5 +44,22 @@ namespace taipei_day_trip_dotnet.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        [HttpGet("attraction/{id}")]
+        public async Task<IActionResult> GetAttractionById([FromRoute] int id)
+        {
+            try
+            {
+                var attraction = await _service.GetAttractionByIdAsync(id);
+                if (attraction == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_mapper.Map<AttractionsResponse>(attraction));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }

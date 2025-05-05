@@ -23,5 +23,10 @@ namespace taipei_day_trip_dotnet.Services
             var result = await _attractionRepository.GetAttractionsAsync(page, keyword);
             return _mapper.Map<IList<AttractionDto>>(result);
         }
+        public async Task<AttractionDto> GetAttractionByIdAsync(int id)
+        {
+            var result = await _attractionRepository.GetAttractionByIdAsync(id);
+            return _mapper.Map<AttractionDto>(result);
+        }
     }
 }

@@ -91,11 +91,20 @@ namespace taipei_day_trip_dotnet.Data
                 }
             };
         }
+        public async Task<AttractionEntity> GetAttractionByIdAsync(int id)
+        {
+            using (IDbConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                string sql = "SELECT * FROM webpage WHERE id = @id";
+                var result = (await connection.QueryAsync<AttractionEntity>(sql, new 
+                { 
+                    id = id
+                })).FirstOrDefault();
 
-        // public async Task<IList<AttractionEntity>> GetAllAttractionsAsync()
-        // {
-        //     return await _context.Attractions.ToListAsync();
-        // }
+                return result;
+            }
+        }
     }
     
 }
