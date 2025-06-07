@@ -10,14 +10,14 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application
     {
         public AutoMapperProfile()
         {
-            CreateMap<AttractionEntity, AttractionDto>()
-                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => 
-                    src.Images != null 
-                    ? src.Images.Split(',', StringSplitOptions.RemoveEmptyEntries) 
+            CreateMap<Attraction, AttractionDto>()
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src =>
+                    src.Images != null
+                    ? src.Images.Split(',', StringSplitOptions.RemoveEmptyEntries)
                     : null
                     ));
-            CreateMap<AttractionEntity, AttractionCategoryDto>();
-            
+            CreateMap<Attraction, AttractionCategoryDto>();
+
             CreateMap<AttractionDto, AttractionsResponse>();
             CreateMap<AttractionCategoryDto, AttractionCategoryResponse>();
         }

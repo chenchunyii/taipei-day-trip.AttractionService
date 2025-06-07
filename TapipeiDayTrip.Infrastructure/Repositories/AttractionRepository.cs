@@ -16,30 +16,30 @@ namespace taipei_day_trip_dotnet.Data
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IList<AttractionEntity>> GetAllCategoriesAsync()
+        public async Task<IList<Attraction>> GetAllCategoriesAsync()
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = "SELECT DISTINCT category FROM webpage";
-                var result = (await connection.QueryAsync<AttractionEntity>(sql)).ToList();
-                
+                var result = (await connection.QueryAsync<Attraction>(sql)).ToList();
+
                 return result;
             }
         }
 
-        public async Task<IList<AttractionEntity>> GetAllCategoriesAsync(string keyword)
+        public async Task<IList<Attraction>> GetAllCategoriesAsync(string keyword)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = "SELECT DISTINCT category FROM webpage WHERE category = @keyword";
-                var result = (await connection.QueryAsync<AttractionEntity>(sql, new { keyword})).ToList();
+                var result = (await connection.QueryAsync<Attraction>(sql, new { keyword })).ToList();
 
                 return result;
             }
         }
-        public async Task<IList<AttractionEntity>> GetAttractionsAsync(int page)
+        public async Task<IList<Attraction>> GetAttractionsAsync(int page)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
@@ -47,28 +47,29 @@ namespace taipei_day_trip_dotnet.Data
 
                 int pageSize = 12;
                 string sql = "SELECT * FROM webpage limit @pageSize offset @offset";
-                var result = (await connection.QueryAsync<AttractionEntity>(sql, new 
-                { 
+                var result = (await connection.QueryAsync<Attraction>(sql, new
+                {
                     pageSize = pageSize,
-                    offset = (page -1) * pageSize
+                    offset = (page - 1) * pageSize
                 })).ToList();
 
                 return result;
-            };
+            }
+            ;
         }
 
-        public async Task<IList<AttractionEntity>> GetAttractionsAsync(int page, string? keyword)
+        public async Task<IList<Attraction>> GetAttractionsAsync(int page, string? keyword)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-        
+
                 int pageSize = 12;
-                
+
                 if (string.IsNullOrWhiteSpace(keyword))
                 {
                     string sql = "SELECT * FROM webpage LIMIT @pageSize OFFSET @offset";
-                    var result = (await connection.QueryAsync<AttractionEntity>(sql, new
+                    var result = (await connection.QueryAsync<Attraction>(sql, new
                     {
                         pageSize = pageSize,
                         offset = (page - 1) * pageSize
@@ -79,8 +80,8 @@ namespace taipei_day_trip_dotnet.Data
                 else
                 {
                     string sql = "SELECT * FROM webpage WHERE category = @keyword OR name like @searchPattern LIMIT @pageSize OFFSET @offset";
-                    var result = (await connection.QueryAsync<AttractionEntity>(sql, new 
-                    { 
+                    var result = (await connection.QueryAsync<Attraction>(sql, new
+                    {
                         pageSize = pageSize,
                         offset = (page - 1) * pageSize,
                         keyword = keyword,
@@ -89,16 +90,17 @@ namespace taipei_day_trip_dotnet.Data
 
                     return result;
                 }
-            };
+            }
+            ;
         }
-        public async Task<AttractionEntity> GetAttractionByIdAsync(int id)
+        public async Task<Attraction> GetAttractionByIdAsync(int id)
         {
             using (IDbConnection connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = "SELECT * FROM webpage WHERE id = @id";
-                var result = (await connection.QueryAsync<AttractionEntity>(sql, new 
-                { 
+                var result = (await connection.QueryAsync<Attraction>(sql, new
+                {
                     id = id
                 })).FirstOrDefault();
 
@@ -106,5 +108,5 @@ namespace taipei_day_trip_dotnet.Data
             }
         }
     }
-    
+
 }

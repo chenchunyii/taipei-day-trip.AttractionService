@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Entities;
 
 namespace taipei_day_trip_dotnet.Entity
 {
     [Table("webpage")]
-    public class AttractionEntity
+    public class Attraction
     {
         [Key]
         [Column("ID")]
@@ -43,5 +44,6 @@ namespace taipei_day_trip_dotnet.Entity
 
         [Column("IMAGES")]
         public string? Images { get; set; }
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }
