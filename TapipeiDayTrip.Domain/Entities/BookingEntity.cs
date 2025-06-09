@@ -9,7 +9,7 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Entities
         public string UserId { get; set; }
         public long AttractionId { get; set; }
         public DateTime BookingDate { get; set; }
-        public DayPeriodEnum DayPeriod { get; set; }
+        public int DayPeriod { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

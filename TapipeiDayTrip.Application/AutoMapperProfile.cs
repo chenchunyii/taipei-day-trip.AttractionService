@@ -2,7 +2,10 @@ using AutoMapper;
 using taipei_day_trip_dotnet.Entity;
 using taipei_day_trip_dotnet.TapipeiDayTrip.API.Reponse;
 using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.DTOs;
+using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Entities;
 using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Reponse;
+using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Reponses;
+using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Requests;
 
 namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application
 {
@@ -20,6 +23,9 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application
 
             CreateMap<AttractionDto, AttractionsResponse>();
             CreateMap<AttractionCategoryDto, AttractionCategoryResponse>();
+            CreateMap<BookingRequest, BookingDto>();
+            CreateMap<Booking, BookingDto>();
+            CreateMap<BookingWithAttractionDto, BookingWithAttractionResponse>();
         }
     }
 }
