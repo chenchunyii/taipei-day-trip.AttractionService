@@ -26,6 +26,7 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application
             CreateMap<BookingRequest, BookingDto>();
             CreateMap<Booking, BookingDto>();
             CreateMap<BookingWithAttractionDto, BookingWithAttractionResponse>();
+            CreateMap<PaymentRequest, PaymentDto>();
         }
     }
 }

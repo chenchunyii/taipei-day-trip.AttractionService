@@ -6,7 +6,7 @@ using taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Requests;
 
 namespace taipei_day_trip_dotnet.TapipeiDayTrip.API.Controllers
 {
-    [Route("api/attraction/bookings")]
+    [Route("api/attraction/booking")]
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _service;
@@ -45,6 +45,22 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.API.Controllers
             }
 
             return Ok(result);
+        }
+        [HttpPut("user/{userId}")]
+        public async Task<IActionResult> DeleteBookingByUserId(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest("User ID cannot be null or empty.");
+            }
+
+            var isDeleted = await _service.DeleteBookingByUserIdAsync(userId);
+            if (!isDeleted)
+            {
+                return NotFound("Booking not found for the specified user.");
+            }
+
+            return Ok(new { message = "Booking deleted successfully." });
         }
     }
 }

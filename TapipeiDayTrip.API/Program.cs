@@ -44,11 +44,17 @@ builder.Services.AddCors(options =>
                             .AllowAnyMethod();
                       });
 });
+
+// setting http client
+builder.Services.AddHttpClient();
+
 // add services to the  container.
 builder.Services.AddScoped<IAttractionService, AttractionServices>();
 builder.Services.AddScoped<IAttractionRepository, AttractionRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 // add automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 

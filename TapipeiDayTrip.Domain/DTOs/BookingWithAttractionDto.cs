@@ -10,5 +10,6 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Domain.DTOs
         public string AttractionName { get; set; }
         public string AttractionAddress { get; set; }
         public string AttractionImages { get; set; }
+        public string AttractionId { get; set; }
     }
 }

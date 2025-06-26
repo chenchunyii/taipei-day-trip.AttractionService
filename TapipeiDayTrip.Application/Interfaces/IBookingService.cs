@@ -5,8 +5,8 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application.Interfaces
 {
     public interface IBookingService
     {
-        Task<BookingWithAttractionResponse> GetBookingByUserIdAsync(string id);
+        Task<BookingWithAttractionResponse> GetBookingByUserIdAsync(string userId);
         Task<BookingWithAttractionResponse> CreateBookingAsync(BookingDto bookingDto);
-        // Task<bool> DeleteBookingAsync(int id);
+        Task<bool> DeleteBookingByUserIdAsync(string userId);
     }
 }

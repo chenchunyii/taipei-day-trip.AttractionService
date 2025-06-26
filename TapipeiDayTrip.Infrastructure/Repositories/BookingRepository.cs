@@ -115,6 +115,7 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Infrastructure.Repositories
                     FROM Bookings b
                     JOIN webpage w ON b.AttractionId = w.id
                     WHERE b.UserId = @Id
+                    AND b.Status = 2
                     ORDER BY b.Id DESC
                     LIMIT 1";
                 var booking = await connection.QueryFirstOrDefaultAsync<BookingWithAttractionDto>(sql, new { Id = id });
@@ -137,5 +138,65 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Infrastructure.Repositories
                 return result;
             }
         }
+
+        public async Task<bool> DeleteBookingByUserIdAsync(string userId)
+        {
+            using (IDbConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                string sql = "UPDATE Bookings SET Status = 0 WHERE UserId = @UserId AND Status = 2";
+                var rowsAffected = await connection.ExecuteAsync(sql, new { UserId = userId });
+                return rowsAffected > 0;
+            }
+        }
+
+        public async Task<BookingWithAttractionDto> UpdateBookingStatusWithTransactionAsync(
+            string userId,
+            IDbConnection connection,
+            IDbTransaction transaction
+        )
+        {
+            // Update booking status
+            string updateSql = "UPDATE Bookings SET Status = 1 WHERE UserId = @UserId AND Status = 2";
+            var rowsAffected = await connection.ExecuteAsync(updateSql, new { UserId = userId }, transaction);
+
+            if (rowsAffected > 0)
+            {
+                // Then fetch the updated booking with attraction details
+                string selectSql = @"
+            SELECT b.*, 
+                w.id AS AttractionId, 
+                w.name AS AttractionName, 
+                w.address AS AttractionAddress, 
+                w.mrt AS AttractionMrt,
+                w.images AS AttractionImages
+            FROM Bookings b
+            JOIN webpage w ON b.AttractionId = w.id
+            WHERE b.UserId = @UserId
+            AND b.Status = 1
+            ORDER BY b.UpdatedAt DESC
+            LIMIT 1";
+
+                var booking = await connection.QueryFirstOrDefaultAsync<BookingWithAttractionDto>(selectSql,
+                    new { UserId = userId }, transaction);
+
+                if (booking != null)
+                {
+                    return new BookingWithAttractionDto
+                    {
+                        BookingDate = booking.BookingDate,
+                        DayPeriod = booking.DayPeriod,
+                        Amount = booking.Amount,
+                        AttractionName = booking.AttractionName,
+                        AttractionAddress = booking.AttractionAddress,
+                        AttractionImages = booking.AttractionImages,
+                        AttractionId = booking.AttractionId
+                    };
+                }
+            }
+
+            return null;
+        }
+
     }
 }

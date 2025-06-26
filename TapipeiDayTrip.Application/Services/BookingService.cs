@@ -25,6 +25,11 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application.Services
         }
         public async Task<BookingWithAttractionResponse> CreateBookingAsync(BookingDto bookingDto)
         {
+            var checkBookingPending = await _bookingRepository.GetBookingByUserIdAsync(bookingDto.UserId);
+            if (checkBookingPending != null)
+            {
+                throw new Exception("You have a pending booking, please complete it first.");
+            }
             bookingDto.CreatedAt = DateTime.UtcNow;
             bookingDto.UpdatedAt = DateTime.UtcNow;
             var bookingWithAttractionDto = await _bookingRepository.CreateBookingWithAttractionAsync(bookingDto);
@@ -32,6 +37,10 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Application.Services
             var result = _mapper.Map<BookingWithAttractionResponse>(bookingWithAttractionDto);
             result.AttractionImages = imageUrl;
             return result;
+        }
+        public async Task<bool> DeleteBookingByUserIdAsync(string userId)
+        {
+            return await _bookingRepository.DeleteBookingByUserIdAsync(userId);
         }
         private string GetFirstImageUrl(string imageUrls)
         {

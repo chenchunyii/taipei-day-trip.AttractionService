@@ -10,6 +10,7 @@ namespace taipei_day_trip_dotnet.Data
 
         public DbSet<Attraction> Attractions => Set<Attraction>();
         public DbSet<Booking> Bookings => Set<Booking>();
+        public DbSet<PaymentEntity> Payments => Set<PaymentEntity>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -39,6 +40,28 @@ namespace taipei_day_trip_dotnet.Data
                 entity.HasOne(b => b.Attraction)
                       .WithMany(a => a.Bookings)
                       .HasForeignKey(b => b.AttractionId);
+            });
+
+            // Configure Payment entity
+            modelBuilder.Entity<PaymentEntity>(entity =>
+            {
+                entity.HasKey(p => p.OrderNumber);
+                entity.Property(p => p.AccountEmail).IsRequired().HasMaxLength(255);
+                entity.Property(p => p.OrderNumber).IsRequired().HasMaxLength(100);
+                entity.Property(p => p.OrderPrice).IsRequired().HasColumnType("decimal(10,2)");
+                entity.Property(p => p.AttractionId).IsRequired();
+                entity.Property(p => p.AttractionName).IsRequired().HasMaxLength(255);
+                entity.Property(p => p.AttractionAddress).IsRequired();
+                entity.Property(p => p.AttractionImage).IsRequired();
+                entity.Property(p => p.TripDate).IsRequired();
+                entity.Property(p => p.TripTime).IsRequired().HasMaxLength(20);
+                entity.Property(p => p.ContactName).IsRequired().HasMaxLength(100);
+                entity.Property(p => p.ContactEmail).IsRequired().HasMaxLength(255);
+                entity.Property(p => p.ContactPhone).IsRequired().HasMaxLength(20);
+                entity.Property(p => p.Status);
+                entity.HasOne(p => p.Attraction)
+                      .WithMany()
+                      .HasForeignKey(p => p.AttractionId);
             });
         }
     }

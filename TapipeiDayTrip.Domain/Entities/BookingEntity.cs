@@ -11,6 +11,7 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Domain.Entities
         public DateTime BookingDate { get; set; }
         public int DayPeriod { get; set; }
         public decimal Amount { get; set; }
+        public BookingStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
