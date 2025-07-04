@@ -132,7 +132,8 @@ namespace taipei_day_trip_dotnet.TapipeiDayTrip.Infrastructure.Repositories
                     Amount = booking.Amount,
                     AttractionName = booking.AttractionName,
                     AttractionAddress = booking.AttractionAddress,
-                    AttractionImages = booking.AttractionImages
+                    AttractionImages = booking.AttractionImages,
+                    AttractionId = booking.AttractionId
                 };
 
                 return result;
