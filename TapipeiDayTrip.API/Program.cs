@@ -49,6 +49,13 @@ builder.Services.AddSwaggerGen(c =>
         Url = "https://chun-web-api.online/api/attraction",
         Description = "Production server (via nginx reverse proxy)"
     });
+
+    // 本地開發環境的 server
+    c.AddServer(new OpenApiServer
+    {
+        Url = "http://localhost:5197",
+        Description = "Local development server"
+    });
 });
 
 // setting cors
@@ -81,7 +88,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 var app = builder.Build();
 
 // 設定 PathBase 以支援反向代理
-app.UsePathBase("/api/attraction");
+// app.UsePathBase("/api/attraction");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -89,7 +96,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/api/attraction/swagger/v1/swagger.json", "Taipei Day Trip API V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Taipei Day Trip API V1");
         c.RoutePrefix = "swagger"; // 設定 Swagger UI 的路由前綴
     });
 }
