@@ -93,7 +93,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Taipei Day Trip API V1");
+        c.SwaggerEndpoint("/api/attraction/swagger/v1/swagger.json", "Taipei Day Trip API V1");
         c.RoutePrefix = "swagger"; // 設定 Swagger UI 的路由前綴
     });
 }
