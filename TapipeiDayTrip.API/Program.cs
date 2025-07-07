@@ -87,9 +87,6 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 var app = builder.Build();
 
-// 設定 PathBase 以支援反向代理
-// app.UsePathBase("/api/attraction");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
