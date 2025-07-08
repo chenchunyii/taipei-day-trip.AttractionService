@@ -60,4 +60,3 @@ This project leverages the following key NuGet packages:
 ## Contact
 - Author: `Chen, Chun-Yi`
 - Email: `chun.yii.chen@gmail.com`
-# taipei-day-trip.AttractionService
