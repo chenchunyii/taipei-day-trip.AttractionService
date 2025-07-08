@@ -88,15 +88,12 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/api/attraction/swagger/v1/swagger.json", "Taipei Day Trip API V1");
-        c.RoutePrefix = "swagger"; // 設定 Swagger UI 的路由前綴
-    });
-}
+    c.SwaggerEndpoint("/api/attraction/swagger/v1/swagger.json", "Taipei Day Trip API V1");
+    c.RoutePrefix = "swagger";
+});
 
 app.UseHttpsRedirection();
 app.UseCors(MyAllowSpecificOrigins);
