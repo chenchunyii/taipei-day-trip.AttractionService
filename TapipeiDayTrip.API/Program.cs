@@ -13,10 +13,15 @@ using TapipeiDayTrip.Application.Interfaces;
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
-// 綁定到所有網絡接口的5197端口
+// 從配置文件讀取設定
+var port = builder.Configuration.GetValue<int>("AppSettings:Port");
+var apiBaseUrl = builder.Configuration.GetValue<string>("AppSettings:ApiBaseUrl");
+var localBaseUrl = builder.Configuration.GetValue<string>("AppSettings:LocalBaseUrl");
+
+// 綁定到所有網絡接口指定端口
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5197);
+    options.ListenAnyIP(port);
 });
 
 // 添加控制器
@@ -46,14 +51,14 @@ builder.Services.AddSwaggerGen(c =>
     // 設定 Swagger 的 servers，包含反向代理的路徑
     c.AddServer(new OpenApiServer
     {
-        Url = "https://chun-web-api.online/api/attraction",
+        Url = apiBaseUrl,
         Description = "Production server (via nginx reverse proxy)"
     });
 
     // 本地開發環境的 server
     c.AddServer(new OpenApiServer
     {
-        Url = "http://localhost:5197",
+        Url = localBaseUrl,
         Description = "Local development server"
     });
 });

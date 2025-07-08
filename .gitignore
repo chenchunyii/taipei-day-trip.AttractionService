@@ -32,6 +32,7 @@ _ReSharper*/
 
 # 本機設定或使用者特定的檔案
 appsettings.Development.json
+appsettings.json
 *.usersecrets
 *.vspscc
 *.vssscc
@@ -46,7 +47,7 @@ TestResults/
 *.log
 *.patch
 
-# Docker 相關 (如果有的話)
+# Docker 相關
 /docker-compose.*.yml
 /.dockerignore
 /dockerfile
