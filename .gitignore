@@ -51,3 +51,6 @@ TestResults/
 /docker-compose.*.yml
 /.dockerignore
 /dockerfile
+
+# AWS 相關
+asws-rds-mysql.session.sql
